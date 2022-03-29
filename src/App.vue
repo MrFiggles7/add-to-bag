@@ -1,17 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <add-to-cart-button :item="item" @add-to-cart="addToCart"></add-to-cart-button>
+      <cart :cart="cart"></cart>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+import Cart from "@/components/Cart";
+import AddToCartButton from "@/components/AddToCartButton";
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    AddToCartButton,
+    Cart
+  },
+
+  data(){
+
+    return{
+      item: {
+        name: 'ItemName',
+        price: 2.99
+      },
+
+      cart: [],
+    }
+
+  },
+
+  methods: {
+    addToCart: function (item) {
+        this.cart.push(item);
+    }
   }
 }
 </script>
